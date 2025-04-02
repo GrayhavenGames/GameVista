@@ -4,7 +4,8 @@
   "description": "Open-source game analytics and monitoring tool",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "docker compose -f docker-compose.dev.yaml up --build"
   },
   "repository": {
     "type": "git",
