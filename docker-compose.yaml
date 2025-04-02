@@ -13,7 +13,7 @@ services:
 
   api:
     build:
-      context: ./api
+      context: ./apps/api
     container_name: game-analytics-api
     ports:
       - "4000:4000"
