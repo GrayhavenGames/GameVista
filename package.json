@@ -1,0 +1,24 @@
+{
+  "name": "gamevista",
+  "version": "0.0.1",
+  "description": "Open-source game analytics and monitoring tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GrayhavenGames/GameVista.git"
+  },
+  "keywords": [
+    "game",
+    "game-development",
+    "analytics"
+  ],
+  "author": "PaxtonTerryDev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GrayhavenGames/GameVista/issues"
+  },
+  "homepage": "https://github.com/GrayhavenGames/GameVista#readme"
+}
