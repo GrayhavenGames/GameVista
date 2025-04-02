@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: ./apps/web
+    container_name: game-analytics-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - API_URL=http://localhost:4000
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: ./api
+    container_name: game-analytics-api
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://user:pass@db:5432/analytics
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    container_name: game-analytics-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: analytics
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
