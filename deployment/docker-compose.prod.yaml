@@ -1,0 +1,31 @@
+name: "GameVista (Prod)"
+services:
+  web:
+    env_file:
+      - .env
+      - .env.production
+    build:
+      context: ./apps/web
+    container_name: game-analytics-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - API_URL=http://api:4000
+    depends_on:
+      - api
+
+  api:
+    env_file:
+      - .env
+      - .env.production
+    build:
+      context: ./apps/api
+    container_name: game-analytics-api
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgres://user:pass@db:5432/analytics
+    depends_on:
+      - db

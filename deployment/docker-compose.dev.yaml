@@ -1,0 +1,54 @@
+name: "gamevista_dev"
+
+networks:
+  gamevista_net:
+    driver: bridge
+
+services:
+  api:
+    build:
+      context: ../apps/api
+      dockerfile: Dockerfile.dev
+    container_name: api
+    networks:
+      - gamevista_net
+    volumes:
+      - ./api:/app
+    ports:
+      - "4400:4000"
+    env_file: .env.development
+    depends_on:
+      - db
+
+  web:
+    build:
+      context: ../apps/web
+      dockerfile: Dockerfile.dev
+    container_name: web
+    networks:
+      - gamevista_net
+    volumes:
+      - ./apps/web:/app
+    ports:
+      - "3000:3000"
+    env_file: .env.development
+    depends_on:
+      - api
+
+  db:
+    image: postgres:15
+    container_name: analytics
+    restart: always
+    networks:
+      - gamevista_net
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: gamevista_analytics
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
