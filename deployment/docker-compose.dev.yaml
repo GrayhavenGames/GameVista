@@ -6,6 +6,7 @@ networks:
 
 services:
   api:
+    env_file: .env.development
     build:
       context: ../apps/api
       dockerfile: Dockerfile.dev
@@ -15,12 +16,12 @@ services:
     volumes:
       - ./api:/app
     ports:
-      - "4400:4000"
-    env_file: .env.development
+      - "${API_HOST}:${API_PORT}"
     depends_on:
       - db
 
   web:
+    env_file: .env.development
     build:
       context: ../apps/web
       dockerfile: Dockerfile.dev
@@ -30,23 +31,22 @@ services:
     volumes:
       - ./apps/web:/app
     ports:
-      - "3000:3000"
-    env_file: .env.development
+      - "${WEB_HOST}:${WEB_PORT}"
     depends_on:
       - api
 
   db:
     image: postgres:15
-    container_name: analytics
+    container_name: db
     restart: always
     networks:
       - gamevista_net
     ports:
       - "5433:5432"
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
-      POSTGRES_DB: gamevista_analytics
+      POSTGRES_USER: ${GAMEVISTA_DB_USER}
+      POSTGRES_PASSWORD: ${GAMEVISTA_DB_PASS}
+      POSTGRES_DB: ${GAMEVISTA_DB_NAME}
     volumes:
       - pgdata:/var/lib/postgresql/data
 
