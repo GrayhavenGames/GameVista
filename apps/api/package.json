@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "./scripts/wait-for-it.sh db:5432 -- npm run migrate && ts-node-dev --respawn --transpile-only src/server.ts",
+    "dev": "./scripts/wait-for-it.sh db:5432 -- npm run migrate && ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/server.ts",
     "migrate": "ts-node -r tsconfig-paths/register ./node_modules/knex/bin/cli.js migrate:latest --knexfile knexfile.ts"
   },
   "keywords": [],
