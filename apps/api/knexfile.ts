@@ -9,7 +9,14 @@ const config: { [key: string]: Knex.Config } = {
     migrations: {
       directory: "./migrations",
     },
+    pool: {
+      min: 2,
+      max: 10,
+      acquireTimeoutMillis: 10000,
+    },
   },
 };
+
+console.log("Connecting to: ", process.env.DATABASE_URL);
 
 export default config;
