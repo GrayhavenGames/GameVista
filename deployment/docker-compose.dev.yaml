@@ -13,7 +13,7 @@ services:
     networks:
       - gamevista_net
     volumes:
-      - ./api:/app
+      - ../apps/api:/app
     ports:
       - "4400:4000"
     env_file: .env.development
@@ -28,7 +28,7 @@ services:
     networks:
       - gamevista_net
     volumes:
-      - ./apps/web:/app
+      - ../apps/web:/app
     ports:
       - "3000:3000"
     env_file: .env.development

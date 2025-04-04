@@ -1,7 +1,19 @@
 FROM node:20-alpine
-# Copy only what's needed
-COPY package*.json ./
+
+# Set working directory
+WORKDIR /app
+
+# Copy only package files first
+COPY package.json package-lock.json ./
+
+# Install dependencies
 RUN npm install
 
+# Copy the rest of the application
+COPY . .
 
-CMD ["npm", "run", "dev"]
+# Expose the port the app runs on
+EXPOSE 3000
+
+# Start the development server
+CMD ["npm", "run", "dev", "--", "--hostname", "0.0.0.0"]
