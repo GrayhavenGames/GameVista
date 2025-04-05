@@ -1,17 +1,16 @@
 {
   "name": "gamevista-web",
   "version": "0.1.0",
-  "private": true,
-  "type": "module",
+  "private": false,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "migrate": "NODE_OPTIONS='--loader ts-node/esm' ts-node --esm src/db/knexfile.ts migrate:latest",
-    "migrate:rollback": "NODE_OPTIONS='--loader ts-node/esm' ts-node --esm src/db/knexfile.ts migrate:rollback",
-    "migrate:make": "NODE_OPTIONS='--loader ts-node/esm' ts-node --esm src/db/knexfile.ts migrate:make",
-    "seed": "NODE_OPTIONS='--loader ts-node/esm' ts-node --esm src/db/knexfile.ts seed:run"
+    "migrate": "npx knex migrate:latest --knexfile src/db/knexfile.ts",
+    "migrate:rollback": "npx knex migrate:rollback --knexfile src/db/knexfile.ts",
+    "migrate:make": "npx knex migrate:make --knexfile src/db/knexfile.ts",
+    "seed": "npx knex seed:run --knexfile src/db/knexfile.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

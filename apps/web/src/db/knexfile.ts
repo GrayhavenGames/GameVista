@@ -10,10 +10,10 @@ const config: { [key: string]: Knex.Config } = {
     client: 'pg',
     connection: {
       host: process.env.DEV_DB_HOST || 'localhost',
-      port: parseInt(process.env.DEV_DB_PORT || '5432'),
-      user: process.env.DEV_DB_USER || 'postgres',
-      password: process.env.DEV_DB_PASSWORD || 'postgres',
-      database: process.env.DEV_DB_NAME || 'gamevista',
+      port: parseInt(process.env.DEV_DB_PORT || '5433'),
+      user: process.env.DEV_DB_USER || 'user',
+      password: process.env.DEV_DB_PASSWORD || 'pass',
+      database: process.env.DEV_DB_NAME || 'gamevista_analytics',
     },
     migrations: {
       directory: join(__dirname, 'migrations'),
