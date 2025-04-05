@@ -5,21 +5,6 @@ networks:
     driver: bridge
 
 services:
-  api:
-    build:
-      context: ../apps/api
-      dockerfile: Dockerfile.dev
-    container_name: api
-    networks:
-      - gamevista_net
-    volumes:
-      - ../apps/api:/app
-    ports:
-      - "4400:4000"
-    env_file: .env.development
-    depends_on:
-      - db
-
   web:
     build:
       context: ../apps/web
@@ -32,8 +17,6 @@ services:
     ports:
       - "3000:3000"
     env_file: .env.development
-    depends_on:
-      - api
 
   db:
     image: postgres:15
